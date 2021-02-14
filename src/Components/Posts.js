@@ -35,7 +35,15 @@ const FilteredPost = ({ data }) => {
 
 const Posts = () => {
   const { id } = useParams();
-  const { data } = useSWR(`${BASE_URL}/posts?userId=${id}`, fetcher);
+  const { data, error } = useSWR(`${BASE_URL}/posts?userId=${id}`, fetcher);
+
+  if (error) {
+    return (
+      <Container>
+        <h4>Error Occured</h4>
+      </Container>
+    );
+  }
 
   return (
     <Container>{!data ? <Loader /> : <FilteredPost {...{ data }} />}</Container>

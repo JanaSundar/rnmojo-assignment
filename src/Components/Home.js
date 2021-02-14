@@ -6,8 +6,16 @@ import Loader from './Loader';
 import Container from './Container';
 
 const Home = () => {
-  const { data } = useSWR(`${BASE_URL}/users`, fetcher);
+  const { data, error } = useSWR(`${BASE_URL}/users`, fetcher);
   const userData = useMemo(() => data, [data]);
+
+  if (error) {
+    return (
+      <Container>
+        <h4>Error Occured</h4>
+      </Container>
+    );
+  }
 
   return (
     <Container>{!data ? <Loader /> : <Users data={userData} />}</Container>

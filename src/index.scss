@@ -9,8 +9,6 @@
   --button2: #ff6e6c;
 }
 
-
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -122,8 +120,6 @@ body {
       position: absolute;
       top: 10px;
       right: 10px;
-      background-color: var(--button2);
-      color: var(--white);
       border: none !important;
       outline: none !important;
       box-shadow: var(--bs);
@@ -201,7 +197,6 @@ table {
 .bouncing-loader > div:nth-child(3) {
   animation-delay: 0.4s;
 }
-
 
 @media screen and (min-width: 600px) {
   .posts {

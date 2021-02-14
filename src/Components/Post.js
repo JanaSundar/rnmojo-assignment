@@ -6,13 +6,25 @@ import { BASE_URL, fetcher } from '../Utils';
 import Container from './Container';
 import Loader from './Loader';
 import Comments from './Comments';
+import Delete from './Delete';
 
 const Post = () => {
   const { postid, id } = useParams();
   const history = useHistory();
-  const { data } = useSWR(`${BASE_URL}/posts/${postid}`, fetcher);
+  const { data, error } = useSWR(`${BASE_URL}/posts/${postid}`, fetcher);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  if (error) {
+    return (
+      <Container>
+        <button onClick={() => history.goBack()} className="btn">
+          Back
+        </button>
+        <h4>Error Occured</h4>
+      </Container>
+    );
+  }
 
   const fetchComments = async () => {
     try {
@@ -48,7 +60,7 @@ const Post = () => {
         <div className="posts">
           <div className="card">
             <button className="delete" onClick={deletePost}>
-              Delete
+              <Delete />
             </button>
             <h4>{data.title}</h4>
             <p>{data.body}</p>

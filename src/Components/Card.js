@@ -6,7 +6,7 @@ const Card = ({ post }) => {
   return (
     <div className="card">
       <h4>{post.title}</h4>
-      <p>{post.body.substr(0, 100)}...</p>
+      <p>{post.body.substr(0, 50)}...</p>
       <Link
         to={{
           pathname: `/posts/${id}/${post.id}`,
